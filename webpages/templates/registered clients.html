@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Registered clients</title>
+{% endblock %}
+{% block content %}
+<u><h3 h3 class="bg-dark text-white text-center p-1">Registered clients</h3></u>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for student in data %}
+    <tr>
+        <td>{{ student.studentFname }}</td>
+        <td>{{ student.studentLname }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.age }}</td>
+        <td>
+            <a href="/editstudent/{{ student.id }}" type="button" class="btn btn-outline-success">Edit</a>
+        </td>
+        <td>
+            <a href="/deletestudent/{{ student.id }}" type="button" class="btn btn-outline-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
