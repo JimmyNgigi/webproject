@@ -20,39 +20,45 @@ def about(request):
 def registration(request):
     template = loader.get_template('registration.html')
     return HttpResponse(template.render())
+def deletestudent(request,id):
+    deletestudent= Student.objects.get(id=id)
+    deletestudent.delete()
+    return redirect('registered')
 def registered(request):
-    template = loader.get_template('registered clients.html')
-    return HttpResponse(template.render())
+    mydata=Student.objects.all()
+    context={'data':mydata}
+    return render(request, 'registered clients.html', context)
+
+
 
 @csrf_exempt
 def addstudent(request):
-
     if request.method == 'POST':
-        formfname = request.POST.get['Fname']
-        formlname = request.POST['Lname']
-        formemail = request.POST['email']
-        formage = request.POST['age']
+        formfname = request.POST.get('Fname')
+        formlname = request.POST.get('Lname')
+        formemail = request.POST.get('email')
+        formage = request.POST.get('age')
         print(formfname, formlname, formemail,formage)
-        obj1=Student(FirstName=formfname, LastName=formlname,Email=formemail,Age=formage)
+        obj1 = Student(FirstName=formfname, LastName=formlname,Email=formemail,Age=formage)
         obj1.save()
         #fetch the student data to be displayed
     mydata = Student.objects.all()
-    context = {'mydata':mydata}
+    context = {'data': mydata}
     return render(request, 'registered clients.html', context)
 
 def editstudent(request,id):
     data = Student.objects.get(id=id)
     context = {'data':data}
-    return render(request, 'registered clients.html', context)
+    return render(request, 'editstudent', context)
 
 
-def updatestudent(request,id):
+def editstudent(request, id):
     if request.method == 'POST':
-        fname = request.POST.get['studfname']
+        fname = request.POST.get['fname']
         lname = request.POST.get['lname']
         email = request.POST.get['email']
         age = request.POST.get['age']
-
+        print(fname, lname, email,age)
 
         editstudent = Student.objects.get(id=id)
         editstudent.studentfirstname = fname
@@ -60,7 +66,3 @@ def updatestudent(request,id):
         editstudent.studentemail = email
         editstudent.studenteage = age
 
-def deletestudent(request,id):
-    deletestudent=Student.objects.get(id=id)
-    deletestudent.delete()
-    return redirect('registered clients.html')

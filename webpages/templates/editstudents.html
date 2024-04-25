@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" ml-2 p-4 col-md-6>
+    <u><h3 class="bg-dark text-white p-1 text-center">Update Student Details</h3></u>
+
+    <form method="POST" action="/updatestudent/{{ data.id }}" style="background-color:darkseagreen;padding:10px">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control"name="studfname" value="{{ data.studentfname }}"id="fname"placeholder="Enter your firstname"required>
+        </div>
+        <div class="mb-3">
+            <label for="lname" class="form-label">lmail</label>
+            <input type="lname" class="form-control"name="studlname" value="{{ data.studentlname }}" id="lname" placeholder="Enter your lastname" required>
+        </div>
+        <div>
+            <label for="email" class="form-label">email</label>
+            <input type="email"class="form-control"name="studmail" value="{{ data.studentemail }}" id="email"placeholder="Enter your email"required>
+        </div>
+        <div>
+            <label for="age" class="form-label">age</label>
+            <input type="age"class="form-control"name="studage" value="{{ data.studentage }}" id="age"placeholder="Enter your age"required>
+        </div>
+            <button type="submit" class="btn btn-primary m-1">Update</button>
+</form>
+</div>
+
+{% endblock %}

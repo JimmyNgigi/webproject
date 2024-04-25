@@ -18,10 +18,10 @@
     <tbody>
     {% for student in data %}
     <tr>
-        <td>{{ student.studentFname }}</td>
-        <td>{{ student.studentLname }}</td>
-        <td>{{ student.email }}</td>
-        <td>{{ student.age }}</td>
+        <td>{{ student.FirstName }}</td>
+        <td>{{ student.LastName }}</td>
+        <td>{{ student.Email }}</td>
+        <td>{{ student.Age }}</td>
         <td>
             <a href="/editstudent/{{ student.id }}" type="button" class="btn btn-outline-success">Edit</a>
         </td>

@@ -10,5 +10,5 @@ class Student(models.Model):
      FirstName = models.CharField(max_length=50)
      LastName = models.CharField(max_length=50)
      Email = models.EmailField(unique=True)
-     Age = models.IntegerField(null=True)
+     Age = models.IntegerField(null=False, blank=False)
 
